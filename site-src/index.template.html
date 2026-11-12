@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Anirudh Yadav Boosa: accessibility and human-computer interaction research</title>
+<meta name="description" content="Anirudh Yadav Boosa is a Computer Science senior at the University of North Texas who studies where mobile apps fail people who use a screen reader, and how AI judges those failures.">
+<meta name="author" content="Anirudh Yadav Boosa">
+<meta name="color-scheme" content="light dark">
+<meta property="og:title" content="Anirudh Yadav Boosa: accessibility and HCI research">
+<meta property="og:description" content="Research on the accessibility of Android apps for blind and low-vision users, an exploratory pilot on AI triage of accessibility bug reports, and drone security.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{SITE_URL}}">
+<link rel="canonical" href="{{SITE_URL}}">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230B1F44'/%3E%3Crect x='10' y='10' width='44' height='44' rx='4' fill='none' stroke='%23FF9A52' stroke-width='5'/%3E%3Ctext x='32' y='43' font-family='Arial,sans-serif' font-size='26' font-weight='700' text-anchor='middle' fill='%23FFFFFF'%3EA%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Anirudh Yadav Boosa","url":"{{SITE_URL}}","jobTitle":"Undergraduate researcher, human-computer interaction and accessibility","affiliation":{"@type":"CollegeOrUniversity","name":"University of North Texas"},"sameAs":["https://github.com/anirudh763","https://www.linkedin.com/in/anirudhyadavboosa"]}
+</script>
+<style>
+@font-face{font-family:"Atkinson Hyperlegible";font-style:normal;font-weight:400;font-display:swap;src:url(data:font/woff2;base64,{{FONT_400}}) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-style:italic;font-weight:400;font-display:swap;src:url(data:font/woff2;base64,{{FONT_400I}}) format("woff2")}
+@font-face{font-family:"Atkinson Hyperlegible";font-style:normal;font-weight:700;font-display:swap;src:url(data:font/woff2;base64,{{FONT_700}}) format("woff2")}
+
+:root{
+  --paper:#FFFFFF; --tint:#EEF3FA; --ink:#0B1F44; --muted:#3D4F73; --signal:#C2410C; --line:#8A9BBA; --ok:#0B6B3A;
+  --measure:64ch;
+}
+@media (prefers-color-scheme:dark){
+  :root{--paper:#07142E; --tint:#0F2147; --ink:#EEF3FB; --muted:#B4C2DC; --signal:#FF9A52; --line:#5E739F; --ok:#7FE0A8}
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:1.5rem}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:1.125rem;line-height:1.55;overflow-wrap:break-word}
+h1,h2,h3,h4,p,ul,ol,dl,dd,dt,figure,pre{margin:0}
+ul,ol{padding:0;list-style:none}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration-line:underline;text-decoration-color:var(--signal);text-decoration-thickness:.14em;text-underline-offset:.2em}
+a:hover{text-decoration-thickness:.24em}
+:focus-visible{outline:.2rem solid var(--signal);outline-offset:.2rem;border-radius:.15rem}
+.wrap{max-width:74rem;margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2.5rem)}
+
+.skip{position:absolute;left:1rem;top:-6rem;z-index:10;background:var(--ink);color:var(--paper);padding:.85rem 1.1rem;font-weight:700;text-decoration:none;border-radius:.3rem}
+.skip:focus{top:1rem}
+
+/* header */
+.top{border-bottom:.0625rem solid var(--line)}
+.top .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;column-gap:2rem}
+.brand{font-weight:700;text-decoration:none;display:inline-flex;align-items:center;min-height:3.25rem}
+.top nav ul{display:flex;flex-wrap:wrap;column-gap:.35rem}
+.top nav a{display:inline-flex;align-items:center;min-height:3.25rem;padding-inline:.6rem;text-decoration-color:transparent}
+.top nav a:hover,.top nav a:focus-visible{text-decoration-color:var(--signal)}
+
+/* hero */
+.hero{padding-block:clamp(2.5rem,7vw,5.5rem) clamp(2rem,5vw,3.5rem)}
+h1{font-size:clamp(2.9rem,9.6vw,7.25rem);line-height:.94;letter-spacing:-.03em;font-weight:700;text-wrap:balance}
+.lead{font-size:clamp(1.35rem,2.6vw,2rem);line-height:1.28;max-width:30ch;margin-top:1.7rem;text-wrap:pretty}
+.now{color:var(--muted);max-width:56ch;margin-top:1.1rem}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.9rem}
+.btn{display:inline-flex;align-items:center;min-height:3rem;padding:.55rem 1.1rem;border:.125rem solid var(--ink);border-radius:.35rem;font-weight:700;text-decoration:none}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.primary:hover{background:var(--paper);color:var(--ink)}
+@media (min-width:62rem){
+  .hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) 19rem;column-gap:4rem;align-items:end}
+}
+/* the three counts from the manuscript */
+.counts{margin-top:2.75rem;border-top:.25rem solid var(--signal);padding-top:1rem}
+@media (min-width:62rem){.counts{margin-top:0}}
+.counts h2{font-size:1rem;font-weight:400;color:var(--muted);line-height:1.4}
+.counts dl{display:grid;gap:1.1rem;margin-top:1rem}
+@media (min-width:34rem) and (max-width:61.99rem){.counts dl{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}}
+.counts dl>div{display:flex;flex-direction:column-reverse}
+.counts dd{font-size:clamp(2.4rem,5vw,3.25rem);line-height:1;font-weight:700;letter-spacing:-.02em}
+.counts dt{font-size:1rem;line-height:1.35;margin-top:.3rem}
+
+/* this page, checked */
+.checked{background:var(--tint);border-block:.0625rem solid var(--line);font-size:1rem}
+.checked summary{cursor:pointer;min-height:3.25rem;padding-block:.8rem;line-height:1.45}
+.checked summary b{display:inline-block;background:var(--signal);color:var(--paper);padding:.05rem .55rem;border-radius:.15rem;margin-right:.5rem}
+.checked ul{display:grid;gap:.55rem;padding-block:.4rem .2rem;max-width:var(--measure)}
+.checked li{display:grid;grid-template-columns:1.35rem 1fr;gap:.55rem;align-items:start}
+.checked svg{width:1.25rem;height:1.25rem;margin-top:.12rem;color:var(--ok)}
+.checked .how{color:var(--muted);max-width:var(--measure);padding-block:.7rem 1.2rem}
+
+/* sections */
+.band{padding-block:clamp(2.75rem,6vw,5rem)}
+.band+.band{border-top:.0625rem solid var(--line)}
+.band.tinted{background:var(--tint)}
+h2.sec{font-size:clamp(1.9rem,4vw,2.9rem);line-height:1.05;letter-spacing:-.02em}
+.sec-note{color:var(--muted);margin-top:.6rem;max-width:52ch}
+.status{display:inline-block;margin-top:.8rem;padding:.12rem .6rem;border:.125rem solid currentColor;border-radius:1rem;font-size:.95rem;font-weight:700;color:var(--muted)}
+.meta{color:var(--muted);font-size:1rem;margin-top:.5rem;max-width:var(--measure)}
+.links{display:flex;flex-wrap:wrap;column-gap:1.5rem;margin-top:.6rem}
+.links a{display:inline-flex;align-items:center;min-height:2.75rem;font-weight:700}
+
+/* case studies */
+.study{margin-top:clamp(2.5rem,5vw,4rem);padding-top:clamp(2.5rem,5vw,4rem);border-top:.0625rem solid var(--line);display:grid;gap:2rem 3.5rem;align-items:start}
+.study:first-of-type{border-top:0;padding-top:0}
+@media (min-width:62rem){
+  .study{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .study .sh,.study .wide{grid-column:1/-1}
+}
+.study h3{font-size:clamp(1.55rem,2.8vw,2.15rem);line-height:1.14;letter-spacing:-.012em;text-wrap:balance}
+.qmrl{display:grid;gap:1rem;max-width:var(--measure)}
+.study .sh{max-width:46rem}
+.qmrl dt{font-weight:700;font-size:1rem;color:var(--muted)}
+.qmrl dd{margin-top:.1rem}
+.fig,.wide{min-width:0}
+.fig figcaption,.wide figcaption{color:var(--muted);font-size:1rem;margin-top:.7rem;max-width:var(--measure)}
+.shot{border:.0625rem solid var(--line);border-radius:.4rem;width:100%}
+
+/* figure: two lanes of evidence */
+.lanes{display:grid;gap:1rem}
+.lane{border:.125rem solid var(--ink);border-radius:.4rem;padding:1rem 1.1rem;background:var(--paper)}
+.lane h4{font-size:1rem;color:var(--muted);font-weight:700}
+.lane ol{display:grid;gap:.5rem;margin-top:.6rem}
+.lane li{padding-left:1.5rem;position:relative}
+.lane li::before{content:"";position:absolute;left:.15rem;top:.45em;width:.55rem;height:.55rem;border-right:.2rem solid var(--signal);border-bottom:.2rem solid var(--signal);transform:rotate(-45deg)}
+.lane b{font-size:1.5rem;line-height:1.1}
+.join{font-weight:700;padding:.2rem 1.1rem;border-left:.25rem solid var(--signal)}
+
+/* figure: 32 reports */
+.cells{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:.3rem}
+.cells span{aspect-ratio:1;border:.125rem solid var(--ink);border-radius:.15rem}
+.cells .to{background:var(--signal);border-color:var(--signal)}
+.cells .back{background:repeating-linear-gradient(45deg,var(--ink) 0 .15rem,transparent .15rem .4rem)}
+.key{display:grid;gap:.35rem;margin-top:.8rem;font-size:1rem}
+.key li{display:grid;grid-template-columns:1.1rem 1fr;gap:.55rem;align-items:start}
+.key i{width:1.1rem;height:1.1rem;margin-top:.2rem;border:.125rem solid var(--ink);border-radius:.15rem}
+.key .to{background:var(--signal);border-color:var(--signal)}
+.key .back{background:repeating-linear-gradient(45deg,var(--ink) 0 .15rem,transparent .15rem .4rem)}
+
+/* figure: terminal output */
+.term{background:var(--tint);border:.0625rem solid var(--line);border-radius:.4rem;padding:1rem 1.1rem;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:.875rem;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.band.tinted .term{background:var(--paper)}
+.term .c{color:var(--muted)}
+.term b{font-weight:700}
+
+/* research pair and project grid */
+.pair{display:grid;gap:2.5rem 3.5rem;margin-top:2.25rem}
+@media (min-width:52rem){.pair{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.pair h3,.grid h3{font-size:1.35rem;line-height:1.22;text-wrap:balance}
+.body{margin-top:.8rem;max-width:var(--measure)}
+.grid{display:grid;gap:0 3.5rem;margin-top:2.25rem}
+@media (min-width:52rem){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.grid>li{padding-block:1.6rem;border-top:.0625rem solid var(--line)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
+.tags li{font-size:.95rem;color:var(--muted);border:.0625rem solid var(--line);border-radius:.25rem;padding:.05rem .5rem}
+.note{color:var(--muted);font-size:1rem;max-width:var(--measure);margin-top:1.6rem}
+
+/* papers */
+.papers{display:grid;gap:2rem;margin-top:2.25rem}
+.papers h3{font-size:1.35rem;line-height:1.22;max-width:36ch}
+
+/* background */
+.cols{display:grid;gap:2.5rem 3.5rem;margin-top:2.25rem}
+@media (min-width:62rem){.cols{grid-template-columns:minmax(0,3fr) minmax(0,2fr)}}
+.facts{display:grid;gap:1.15rem}
+.facts>div{display:grid;gap:.1rem 1.5rem}
+@media (min-width:40rem){.facts>div{grid-template-columns:10.5rem minmax(0,1fr)}}
+.facts dt{color:var(--muted);font-size:1rem;padding-top:.12rem}
+.sub{font-size:1.25rem;font-weight:700;margin:2.2rem 0 1rem}
+.sub:first-child{margin-top:0}
+.plain{display:grid;gap:.6rem;max-width:var(--measure)}
+.plain li{padding-left:1.1rem;position:relative}
+.plain li::before{content:"";position:absolute;left:0;top:.62em;width:.45rem;height:.45rem;background:var(--signal);border-radius:50%}
+
+/* contact + footer */
+.contact p{max-width:var(--measure);margin-top:1rem}
+.contact .links a{font-size:1.25rem}
+footer{border-top:.0625rem solid var(--line);padding-block:2rem 3rem;color:var(--muted);font-size:1rem}
+footer p{max-width:70ch}
+footer p+p{margin-top:.5rem}
+
+@media (forced-colors:active){.btn,.status,.lane,.cells span,.key i{border-color:CanvasText}.cells .to,.key .to{background:Highlight}.checked summary b{background:Canvas;color:CanvasText;border:.0625rem solid CanvasText}.plain li::before{background:CanvasText}}
+@media print{.top nav,.skip,.checked,.actions{display:none}.band{padding-block:1.2rem}body{font-size:11pt}a{text-decoration:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Anirudh Yadav Boosa</a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#work">Featured work</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#papers">Papers</a></li>
+        <li><a href="#background">Background</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="name">
+    <div class="wrap">
+      <div>
+        <h1 id="name">Anirudh Yadav Boosa</h1>
+        <p class="lead">I study where mobile apps fail people who use a screen reader, and how AI judges those failures.</p>
+        <p class="now">Computer Science senior at the University of North Texas, graduating in May 2027. I am applying to PhD programs for Fall 2027 and to research internships for summer 2027.</p>
+        <ul class="actions">
+          <li><a class="btn primary" href="{{RESUME_HREF}}">Resume (PDF, 1 page)</a></li>
+          <li><a class="btn" href="{{CV_HREF}}">CV (PDF, 2 pages)</a></li>
+          <li><a class="btn" href="https://github.com/anirudh763">GitHub</a></li>
+          <li><a class="btn" href="https://www.linkedin.com/in/anirudhyadavboosa">LinkedIn</a></li>
+        </ul>
+      </div>
+      <div class="counts">
+        <h2>From a manuscript under review, written with the DiscoverABILITY Lab</h2>
+        <dl>
+          <div><dt>Android apps built for blind and visually impaired users, evaluated</dt><dd>26</dd></div>
+          <div><dt>Google Play reviews of those apps, analyzed</dt><dd>8,286</dd></div>
+          <div><dt>accessibility violations, sorted into 12 kinds</dt><dd>1,810</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <div class="checked">
+    <div class="wrap">
+      <details>
+        <summary><b>This page, checked</b> {{AUDIT_SUMMARY}}</summary>
+        <ul>
+{{AUDIT_ITEMS}}
+        </ul>
+        <p class="how">{{AUDIT_HOW}}</p>
+      </details>
+    </div>
+  </div>
+
+  <section class="band" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <h2 class="sec" id="work-h">Featured work</h2>
+      <p class="sec-note">Three pieces of work. Each one says what I asked, what I did, and what it does not show.</p>
+
+      <article class="study" aria-labelledby="s1">
+        <header class="sh">
+          <h3 id="s1">How accessible are Android apps built for blind users?</h3>
+          <p class="meta">DiscoverABILITY Lab, University of North Texas, May 2025 to January 2026. With Dr. Stephanie Ludi (principal investigator), Dr. Rana Ghoneim and Dr. Wajdi Aljedaani.</p>
+          <p class="status">Manuscript under review</p>
+        </header>
+        <div>
+          <dl class="qmrl">
+            <div><dt>Question</dt><dd>Apps made for blind and visually impaired people should be the most accessible apps there are. Are they?</dd></div>
+            <div><dt>Method</dt><dd>We looked at 26 such apps in two ways: an automated scan of their screens, and what people wrote about them in 8,286 Google Play reviews.</dd></div>
+            <div><dt>My part</dt><dd>I ran Google Accessibility Scanner on the onboarding, interactive and feedback screens and sorted 1,810 violations into 12 kinds, such as touch target size, contrast and focus order. I built the Python pipelines that classify the reviews, and helped relate what the scanner flags to what reviewers describe.</dd></div>
+            <div><dt>Limits</dt><dd>The manuscript is under review at <i>Universal Access in the Information Society</i>, so the findings are not published yet. Reviews are public Google Play reviews; we cannot confirm who wrote them.</dd></div>
+          </dl>
+        </div>
+        <figure class="fig">
+          <div class="lanes">
+            <div class="lane">
+              <h4>Evidence 1: what a scanner finds</h4>
+              <ol>
+                <li><b>26</b> Android apps</li>
+                <li>Google Accessibility Scanner on three kinds of screen</li>
+                <li><b>1,810</b> violations in 12 kinds</li>
+              </ol>
+            </div>
+            <div class="lane">
+              <h4>Evidence 2: what people report</h4>
+              <ol>
+                <li>the same 26 apps</li>
+                <li><b>8,286</b> Google Play reviews</li>
+                <li>each review classified by the kind of accessibility failure it describes</li>
+              </ol>
+            </div>
+            <p class="join">Then the two are compared: does the scanner flag what reviewers complain about?</p>
+          </div>
+          <figcaption>How the study is built: two kinds of evidence about the same 26 apps.</figcaption>
+        </figure>
+      </article>
+
+      <article class="study" aria-labelledby="s2">
+        <header class="sh">
+          <h3 id="s2">Do reproduction steps change how an AI triages an accessibility bug report?</h3>
+          <p class="meta">TalkBack Triage Pilot, November 2026. An independent follow-up to the lab study, which I proposed to Dr. Wajdi Aljedaani.</p>
+          <p class="status">Exploratory: one AI run, no human labels yet</p>
+        </header>
+        <div>
+          <dl class="qmrl">
+            <div><dt>Question</dt><dd>When a bug report includes the steps to reproduce a problem with TalkBack, Android&rsquo;s screen reader, does a large language model judge the report differently?</dd></div>
+            <div><dt>Method</dt><dd>I built a web app around 75 real accessibility issues from two open-source Android apps. For each of the 32 reports that have TalkBack steps, it makes a copy with only those steps removed, and asks the model the same two questions about both versions.</dd></div>
+            <div><dt>Result</dt><dd>Removing the steps changed the model&rsquo;s answer to &ldquo;needs more evidence&rdquo; on 12 reports, and the other way on 1 (exact McNemar test, p = 0.003).</dd></div>
+            <div><dt>Limits</dt><dd>This shows the model&rsquo;s answer depends on those lines. It does not show the answer is right. That needs people to label the same reports, which the app is built for and which has not happened yet. The app&rsquo;s code was written with AI assistance, as the README states.</dd></div>
+          </dl>
+          <ul class="links">
+            <li><a href="https://anirudh763.github.io/talkback-triage-pilot/">Open the live app</a></li>
+            <li><a href="https://github.com/anirudh763/talkback-triage-pilot">Pilot code and data on GitHub</a></li>
+            <li><a href="https://github.com/anirudh763/talkback-triage-pilot/blob/main/LABELING.md">Labeling protocol</a></li>
+          </ul>
+        </div>
+        <figure class="fig">
+          <div class="cells" aria-hidden="true">{{CELLS}}</div>
+          <ul class="key">
+            <li><i class="to"></i><span>12 reports: the answer changed to &ldquo;needs more evidence&rdquo; once the steps were removed</span></li>
+            <li><i class="back"></i><span>1 report: the answer changed the other way</span></li>
+            <li><i></i><span>19 reports: this answer did not change</span></li>
+          </ul>
+          <figcaption>The 32 reports that have TalkBack steps, one square each, by the model&rsquo;s answer on whether the report has enough evidence. One AI run.</figcaption>
+        </figure>
+        <figure class="wide">
+{{TALKBACK_SHOT}}
+          <figcaption>The results screen of the live app, where these numbers come from. In the app, the model is Claude.</figcaption>
+        </figure>
+      </article>
+
+      <article class="study" aria-labelledby="s3">
+        <header class="sh">
+          <h3 id="s3">Can a drone&rsquo;s flight log prove that nobody changed it?</h3>
+          <p class="meta">flightseal, November 2026. C++17 with OpenSSL (SHA-256 and Ed25519).</p>
+          <p class="status">Open source, built with AI assistance</p>
+        </header>
+        <div>
+          <dl class="qmrl">
+            <div><dt>Question</dt><dd>After a crash, the flight log is evidence. Can the log itself show whether someone edited it, even if that person holds the file and can rewrite all of it?</dd></div>
+            <div><dt>Method</dt><dd>Each record carries a checksum and joins a SHA-256 hash chain. Every few thousand records, a signed receipt goes to someone else, such as an investigator or an insurer.</dd></div>
+            <div><dt>Result</dt><dd>On a public PX4 flight log of 64,542 records, the tool catches a single edited altitude reading, a full rewrite of the chain, and a log with its last 2,000 records deleted.</dd></div>
+            <div><dt>Limits</dt><dd>A demonstration on one public log, not a system that flies. The code was written with AI assistance, as the README states.</dd></div>
+          </dl>
+          <ul class="links">
+            <li><a href="https://github.com/anirudh763/flightseal">flightseal on GitHub</a></li>
+          </ul>
+        </div>
+        <figure class="fig">
+<pre class="term"><span class="c"># The holder edits one reading,
+# then recomputes every link after it.</span>
+$ fseal verify rewritten.fseal
+<b>RESULT: INTACT</b>
+<span class="c"># The hash chain alone cannot tell.</span>
+
+$ fseal verify rewritten.fseal \
+    --receipts flight.receipts \
+    --pubkey eed39ebf…681397
+  receipt 7 (count 35000):
+  log does not match the receipt
+  (it was rewritten after the receipt was issued)
+<b>RESULT: TAMPERED</b></pre>
+          <figcaption>Output of the demo script in the repository, with paths and the key shortened and long lines split. The receipt held by someone else is what catches a full rewrite.</figcaption>
+        </figure>
+      </article>
+    </div>
+  </section>
+
+  <section class="band tinted" id="research" aria-labelledby="research-h">
+    <div class="wrap">
+      <h2 class="sec" id="research-h">More research</h2>
+      <div class="pair">
+        <article aria-labelledby="r1">
+          <h3 id="r1">An open dataset of accessibility bug reports</h3>
+          <p class="meta">a11y-issue-warehouse, November 2026.</p>
+          <p class="status">Public on GitHub, labels not hand-verified</p>
+          <p class="body">2,643 issues from 15 open-source Android apps: 1,187 accessibility reports and a date-matched comparison sample, in a tested SQLite warehouse with 19 data-quality checks. One check caught 180 search results that were not about accessibility at all.</p>
+          <p class="body">A text classifier, scored on each app after training only on the other 14, reaches F1 0.756 with the defining keywords hidden (95% bootstrap interval 0.736 to 0.776). The README lists what the data can and cannot show.</p>
+          <ul class="tags"><li>Python</li><li>SQL (SQLite)</li><li>scikit-learn</li></ul>
+          <ul class="links"><li><a href="https://github.com/anirudh763/a11y-issue-warehouse">Dataset and code on GitHub</a></li></ul>
+        </article>
+        <article aria-labelledby="r2">
+          <h3 id="r2">Senior thesis: control-aware attacks and defenses for drones</h3>
+          <p class="meta">University of North Texas, August 2026 to present. Advisor: Dr. Kirill Morozov. Sole author.</p>
+          <p class="status">In progress</p>
+          <p class="body">My thesis is about attacks on drones that run ArduPilot and talk over MAVLink, where the attacker uses the control system itself, and about how to defend against them.</p>
+          <p class="body">I am developing command validation and anomaly detection for MAVLink command sequences that exploit control-level weaknesses.</p>
+          <ul class="tags"><li>ArduPilot</li><li>MAVLink</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="projects" aria-labelledby="projects-h">
+    <div class="wrap">
+      <h2 class="sec" id="projects-h">Other projects</h2>
+      <p class="sec-note">Smaller projects, newest first.</p>
+      <ul class="grid">
+        <li>
+          <h3>mavframe</h3>
+          <p class="body">A parser for MAVLink v2 drone telemetry, written the way firmware code is written. It uses no heap memory, recovers after corrupted bytes, and is fuzzed and checked against pymavlink.</p>
+          <ul class="tags"><li>C99</li><li>CMake</li><li>libFuzzer</li><li>November 2026</li></ul>
+          <ul class="links"><li><a href="https://github.com/anirudh763/mavframe">mavframe on GitHub</a></li></ul>
+        </li>
+        <li>
+          <h3>leaseq</h3>
+          <p class="body">A job queue that survives crashes. A test kills worker processes at random across 2,000 jobs, and none are lost or completed twice.</p>
+          <ul class="tags"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>November 2026</li></ul>
+          <ul class="links"><li><a href="https://github.com/anirudh763/leaseq">leaseq on GitHub</a></li></ul>
+        </li>
+        <li>
+          <h3>Network IoT Detection</h3>
+          <p class="body">A smart-home security monitor that tells blind and low-vision users about threats through screen-reader output and sound. I am responsible for the non-functional requirements: data protection, access control, uptime and network recovery.</p>
+          <ul class="tags"><li>Senior capstone</li><li>Team of four</li><li>In progress, to May 2027</li></ul>
+        </li>
+        <li>
+          <h3>Vaccine transport to rural areas</h3>
+          <p class="body">A ten-week team research project on how to move vaccines to rural areas, in the Applied Research and Engineering Practice program at UNT Libraries.</p>
+          <ul class="tags"><li>Team research</li><li>Fall 2026</li></ul>
+        </li>
+        <li>
+          <h3>Systems and accessibility research suite</h3>
+          <p class="body">A browser prototype: a drone flight simulator with sensor-fault injection, a plain table view that mirrors the 3D scene for screen-reader users, and contrast functions for WCAG and a simplified APCA.</p>
+          <ul class="tags"><li>TypeScript</li><li>Next.js</li><li>Prototype built with Claude Code</li><li>September 2026</li></ul>
+          <ul class="links"><li><a href="https://github.com/anirudh763/portfolio/tree/main/My_Claude_Code_">Research suite on GitHub</a></li></ul>
+        </li>
+        <li>
+          <h3>The Kitchen Ledger</h3>
+          <p class="body">A weekly meal planner that builds the grocery list and adds up nutrition for the week. Everything stays in the browser, with no account and no server.</p>
+          <ul class="tags"><li>React</li><li>Vite</li><li>Tailwind CSS</li><li>July 2026</li></ul>
+          <ul class="links">
+            <li><a href="https://anirudh763.github.io/mealplanner/">Open The Kitchen Ledger</a></li>
+            <li><a href="https://github.com/anirudh763/mealplanner">Kitchen Ledger on GitHub</a></li>
+          </ul>
+        </li>
+        <li>
+          <h3>Amazon home page clone</h3>
+          <p class="body">My first front-end exercise: the Amazon home page rebuilt with plain HTML and CSS.</p>
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>June 2025</li></ul>
+          <ul class="links"><li><a href="https://github.com/anirudh763/Amazon-Clone">Amazon clone on GitHub</a></li></ul>
+        </li>
+      </ul>
+      <p class="note">The code in flightseal, mavframe, leaseq, a11y-issue-warehouse and the TalkBack Triage Pilot was written with AI assistance, and each README says so.</p>
+    </div>
+  </section>
+
+  <section class="band tinted" id="papers" aria-labelledby="papers-h">
+    <div class="wrap">
+      <h2 class="sec" id="papers-h">Papers and posters</h2>
+      <ul class="papers">
+        <li>
+          <h3>Evaluation of Blind and Visual Impaired Android Applications</h3>
+          <p class="meta">R. Ghoneim, W. Aljedaani, A. Y. Boosa and S. Ludi. Journal manuscript, <i>Universal Access in the Information Society</i> (Springer), 2026.</p>
+          <p class="status">Under review</p>
+        </li>
+        <li>
+          <h3>What is Accessibility in Computing?</h3>
+          <p class="meta">R. Ghoneim, R. Sharma, A. A. Islam, S. V. Pentyala, A. Y. Boosa and A.-R. Glee. Supervised by Dr. Stephanie Ludi. Made in the CRA UR2PhD program at the University of North Texas in 2025. It was accepted to the Grace Hopper Celebration 2026, which its organizers later canceled.</p>
+          <p class="status">Poster</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" id="background" aria-labelledby="background-h">
+    <div class="wrap">
+      <h2 class="sec" id="background-h">Background</h2>
+      <div class="cols">
+        <div>
+          <h3 class="sub">Education</h3>
+          <dl class="facts">
+            <div><dt>Expected May 2027</dt><dd><strong>University of North Texas</strong>, B.S. in Computer Science. Senior thesis advised by Dr. Kirill Morozov.</dd></div>
+            <div><dt>2023 to 2024</dt><dd><strong>University at Buffalo</strong>, Computer Science coursework before I transferred.</dd></div>
+          </dl>
+          <h3 class="sub">Experience</h3>
+          <dl class="facts">
+            <div><dt>May 2025 to Jan 2026</dt><dd><strong>Undergraduate Research Assistant</strong>, DiscoverABILITY Lab, University of North Texas.</dd></div>
+            <div><dt>Summer 2025</dt><dd><strong>UR2PhD Research Scholar</strong>, Computing Research Association. A funded summer of research on accessible mobile systems, with training in research methods, scientific writing and research ethics.</dd></div>
+            <div><dt>May 2025 to present</dt><dd><strong>Front Desk Assistant</strong>, UNT Housing and Residence Life. First point of contact for the residents of four halls.</dd></div>
+            <div><dt>2023 to 2024</dt><dd><strong>Student employee, peer mentor and student leader</strong>, University at Buffalo.</dd></div>
+          </dl>
+        </div>
+        <div>
+          <h3 class="sub">Programs and awards</h3>
+          <ul class="plain">
+            <li>STARS AI Scholars, 2026 to 2027 cohort, for K-12 AI education projects.</li>
+            <li>CRA UR2PhD, with a summer research award, 2025.</li>
+            <li>AccessComputing, a national alliance based at the University of Washington. Member since 2025.</li>
+          </ul>
+          <h3 class="sub">Skills</h3>
+          <ul class="plain">
+            <li>Accessibility evaluation with Google Accessibility Scanner, TalkBack and the WCAG guidelines.</li>
+            <li>Qualitative and quantitative analysis of user feedback, such as app reviews and bug reports.</li>
+            <li>Python with pandas, NumPy, scikit-learn, NLTK and Matplotlib; text classification; SQL.</li>
+            <li>Prompting and evaluating large language models.</li>
+            <li>C++, C, Java, JavaScript, HTML and CSS, Git, LaTeX.</li>
+            <li>English, Hindi and Telugu.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band tinted contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <h2 class="sec" id="contact-h">Contact</h2>
+      <p>I am looking for a PhD position for Fall 2027 and a research internship for summer 2027. The quickest way to reach me is a message on LinkedIn.</p>
+      <ul class="links">
+{{CONTACT_LINKS}}
+      </ul>
+      <p class="note">If something on this page is hard to use with your screen reader, keyboard or zoom level, please tell me. I would like to fix it.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Set in Atkinson Hyperlegible, a typeface the Braille Institute designed for low-vision readers. No scripts run on this page, and it has no trackers and no cookies.</p>
+    <p>Written with AI assistance. Last updated November 2026.</p>
+  </div>
+</footer>
+</body>
+</html>
