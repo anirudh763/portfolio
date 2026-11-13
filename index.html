@@ -230,7 +230,7 @@ footer p+p{margin-top:.5rem}
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 20 20"><path d="M3.5 10.5l4.2 4.2L16.5 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>The lowest text contrast is 5.1 to 1. WCAG AA asks for 4.5.</span></li>
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 20 20"><path d="M3.5 10.5l4.2 4.2L16.5 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Every link and control is at least 44 pixels tall, on a phone and on a desktop. WCAG AA asks for 24.</span></li>
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 20 20"><path d="M3.5 10.5l4.2 4.2L16.5 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Nothing scrolls sideways at 320 pixels wide, at 200% zoom, or with the text size doubled.</span></li>
-          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 20 20"><path d="M3.5 10.5l4.2 4.2L16.5 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>All 26 links and controls take keyboard focus with a visible ring, in both themes.</span></li>
+          <li><svg aria-hidden="true" focusable="false" viewBox="0 0 20 20"><path d="M3.5 10.5l4.2 4.2L16.5 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>All 27 links and controls take keyboard focus with a visible ring, in both themes.</span></li>
           <li><svg aria-hidden="true" focusable="false" viewBox="0 0 20 20"><path d="M3.5 10.5l4.2 4.2L16.5 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>No scripts run. With JavaScript off, every heading and link is still there.</span></li>
         </ul>
         <p class="how">Measured on 12 November 2026 with axe-core and a Playwright script. Automated checks find only some problems. I have not yet tested this page by hand with TalkBack, VoiceOver or NVDA.</p>
@@ -382,6 +382,12 @@ $ fseal verify rewritten.fseal \
       <h2 class="sec" id="projects-h">Other projects</h2>
       <p class="sec-note">Smaller projects, newest first.</p>
       <ul class="grid">
+        <li>
+          <h3>Fix merged into Apple&rsquo;s pkl-swift</h3>
+          <p class="body">pkl-swift is Apple&rsquo;s Swift library for the Pkl configuration language. When settings came from a project file, custom TLS certificates were being dropped, so downloads failed for people behind corporate proxies or private servers. My fix keeps them. An Apple maintainer reviewed, approved and merged it.</p>
+          <ul class="tags"><li>Swift</li><li>Pull request #138</li><li>April 2026</li></ul>
+          <ul class="links"><li><a href="https://github.com/apple/pkl-swift/pull/138">Pull request #138 on GitHub</a></li></ul>
+        </li>
         <li>
           <h3>mavframe</h3>
           <p class="body">A parser for MAVLink v2 drone telemetry, written the way firmware code is written. It uses no heap memory, recovers after corrupted bytes, and is fuzzed and checked against pymavlink.</p>

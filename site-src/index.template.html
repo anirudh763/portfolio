@@ -378,6 +378,12 @@ $ fseal verify rewritten.fseal \
       <p class="sec-note">Smaller projects, newest first.</p>
       <ul class="grid">
         <li>
+          <h3>Fix merged into Apple&rsquo;s pkl-swift</h3>
+          <p class="body">pkl-swift is Apple&rsquo;s Swift library for the Pkl configuration language. When settings came from a project file, custom TLS certificates were being dropped, so downloads failed for people behind corporate proxies or private servers. My fix keeps them. An Apple maintainer reviewed, approved and merged it.</p>
+          <ul class="tags"><li>Swift</li><li>Pull request #138</li><li>April 2026</li></ul>
+          <ul class="links"><li><a href="https://github.com/apple/pkl-swift/pull/138">Pull request #138 on GitHub</a></li></ul>
+        </li>
+        <li>
           <h3>mavframe</h3>
           <p class="body">A parser for MAVLink v2 drone telemetry, written the way firmware code is written. It uses no heap memory, recovers after corrupted bytes, and is fuzzed and checked against pymavlink.</p>
           <ul class="tags"><li>C99</li><li>CMake</li><li>libFuzzer</li><li>November 2026</li></ul>
